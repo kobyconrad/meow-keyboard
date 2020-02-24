@@ -1,5 +1,5 @@
 import { useSharedState, RoomServiceProvider } from "@roomservice/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sound from "react-sound";
 
 const App = () => {
@@ -19,16 +19,31 @@ const App = () => {
       prevDoc.array.pop();
     });
   }
-  const mappedMeows = (sharedState.array || []).map(function(item) {
-    return (
-      <Sound
-        url="http://localhost:3000/meow.mp3"
-        playStatus={"PLAYING"}
-        playFromPosition={0}
-        ignoreMobileRestrictions={true}
-      />
-    );
-  });
+  // const mappedMeows = (sharedState.array || []).map(function(item) {
+  //   return (
+  //     <Sound
+  //       url="http://localhost:3000/meow.mp3"
+  //       playStatus={"PLAYING"}
+  //       playFromPosition={0}
+  //       ignoreMobileRestrictions={true}
+  //     />
+  //   );
+  // });
+
+  function useAudio(url) {
+    const [aud, setAud] = useState();
+    useEffect(() => {
+      setAud(new Audio(url));
+    }, [url]);
+    function play() {
+      if (aud) {
+        aud.play();
+      }
+    }
+    return play;
+  }
+
+  const playMeow = useAudio("http://localhost:3000/meow.mp3");
 
   return (
     <div>
@@ -38,8 +53,15 @@ const App = () => {
 
       <button onClick={onClick}>Increase Array</button>
       <button onClick={arrReduce}>Decrease Array</button>
-      {mappedMeows}
-      <Sound
+      <button
+        onClick={function() {
+          playMeow();
+        }}
+      >
+        Play Audio
+      </button>
+      {/* {mappedMeows} */}
+      {/* <Sound
         url="http://localhost:3000/meow.mp3"
         playStatus={"PLAYING"}
         playFromPosition={0}
@@ -56,7 +78,7 @@ const App = () => {
         playStatus={"PLAYING"}
         playFromPosition={600}
         ignoreMobileRestrictions={true}
-      />
+      /> */}
     </div>
   );
 };
