@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function WhiteKey(props) {
+function BlackKey(props) {
   const [state, setState] = useState("0");
 
   function keyClick() {
@@ -19,21 +19,21 @@ function WhiteKey(props) {
     >
       <style jsx>{`
         .keyContainer {
-          width: 65px;
-          height: 350px;
+          width: 30px;
+          height: 200px;
           margin-top: ${state};
-          background-color: #f7f6f7;
+          background-color: #444;
           box-shadow: inset 0 0 7px #444;
           border-radius: 0 0 7px 10px;
-          z-index: 0;
           transform: translateX(${props.translateX});
+          z-index: 1;
         }
         .keyContainer:hover {
-          background-color: #eeeeee;
+          background-color: #111;
         }
       `}</style>
     </div>
   );
 }
 
-export default WhiteKey;
+export default BlackKey;
