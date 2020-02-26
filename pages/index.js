@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Open multiple browser windows!</h1>
+      <h1>Kitten Concert Keyboard</h1>
       <div className="keyboardContainer">
         <WhiteKey />
         <BlackKey translateX="-15px" />
