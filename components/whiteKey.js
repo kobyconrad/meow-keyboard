@@ -27,7 +27,7 @@ function WhiteKey(props) {
     return play;
   }
 
-  let playMeow = useAudio("http://localhost:3000/meow.mp3");
+  let playMeow = useAudio("http://localhost:3000/shortmeow.mp3");
 
   return (
     <div
