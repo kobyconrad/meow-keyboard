@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Sound from "react-sound";
 import WhiteKey from "../components/whiteKey";
 import BlackKey from "../components/blackKey";
+import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 
 const App = () => {
   const [sharedState, setSharedState] = useSharedState("my-room");
@@ -32,11 +33,7 @@ const App = () => {
     <div>
       <h1>Kitten Concert Keyboard</h1>
       <div className="keyboardContainer">
-        <WhiteKey
-          onMouseDown={function() {
-            playMeow();
-          }}
-        />
+        <WhiteKey />
         <BlackKey translateX="-15px" />
         <WhiteKey translateX="-30px" />
         <BlackKey translateX="-45px" />
@@ -52,6 +49,7 @@ const App = () => {
             playMeow2();
             playCount++;
           }
+          console.log(playCount);
         }}
       >
         Play Audio

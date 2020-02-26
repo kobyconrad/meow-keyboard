@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function WhiteKey(props) {
   const [state, setState] = useState("0");
+  const [playCount, setPlayCount] = useState(1);
 
   function keyClick() {
     setState("30px");
@@ -9,6 +10,15 @@ function WhiteKey(props) {
 
   function keyOnMouseUp() {
     setState("0");
+  }
+
+  function increasePlayCount() {
+    let current = playCount;
+    setPlayCount(current + 1);
+  }
+
+  function resetPlayCount() {
+    setPlayCount(1);
   }
 
   function useAudio(url) {
@@ -28,13 +38,33 @@ function WhiteKey(props) {
   }
 
   let playMeow = useAudio("http://localhost:3000/shortmeow.mp3");
+  let playMeow2 = useAudio("http://localhost:3000/shortmeow.mp3");
+  let playMeow3 = useAudio("http://localhost:3000/shortmeow.mp3");
+  let playMeow4 = useAudio("http://localhost:3000/shortmeow.mp3");
+  let playMeow5 = useAudio("http://localhost:3000/shortmeow.mp3");
 
   return (
     <div
       className="keyContainer"
       onMouseDown={function() {
         keyClick();
-        playMeow();
+        if (playCount === 1) {
+          playMeow();
+          increasePlayCount();
+        } else if (playCount === 2) {
+          playMeow2();
+          increasePlayCount();
+        } else if (playCount === 3) {
+          playMeow3();
+          increasePlayCount();
+        } else if (playCount === 4) {
+          playMeow4();
+          increasePlayCount();
+        } else if (playCount === 5) {
+          playMeow5();
+          resetPlayCount();
+        }
+        console.log(playCount);
       }}
       onMouseUp={keyOnMouseUp}
     >
