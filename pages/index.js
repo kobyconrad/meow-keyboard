@@ -32,7 +32,11 @@ const App = () => {
     <div>
       <h1>Kitten Concert Keyboard</h1>
       <div className="keyboardContainer">
-        <WhiteKey />
+        <WhiteKey
+          onMouseDown={function() {
+            playMeow();
+          }}
+        />
         <BlackKey translateX="-15px" />
         <WhiteKey translateX="-30px" />
         <BlackKey translateX="-45px" />

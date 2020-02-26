@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function WhiteKey(props) {
   const [state, setState] = useState("0");
@@ -11,10 +11,31 @@ function WhiteKey(props) {
     setState("0");
   }
 
+  function useAudio(url) {
+    const [aud, setAud] = useState();
+
+    useEffect(() => {
+      setAud(new Audio(url));
+    }, [url]);
+
+    function play() {
+      if (aud) {
+        aud.play();
+      }
+    }
+
+    return play;
+  }
+
+  let playMeow = useAudio("http://localhost:3000/meow.mp3");
+
   return (
     <div
       className="keyContainer"
-      onMouseDown={keyClick}
+      onMouseDown={function() {
+        keyClick();
+        playMeow();
+      }}
       onMouseUp={keyOnMouseUp}
     >
       <style jsx>{`
