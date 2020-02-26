@@ -37,11 +37,14 @@ function WhiteKey(props) {
     return play;
   }
 
-  let playMeow = useAudio("http://localhost:3000/shortmeow.mp3");
-  let playMeow2 = useAudio("http://localhost:3000/shortmeow.mp3");
-  let playMeow3 = useAudio("http://localhost:3000/shortmeow.mp3");
-  let playMeow4 = useAudio("http://localhost:3000/shortmeow.mp3");
-  let playMeow5 = useAudio("http://localhost:3000/shortmeow.mp3");
+  let playURL = props.playURL;
+  //"http://localhost:3000/shortmeow.mp3"
+
+  let playMeow = useAudio(`${playURL}`);
+  let playMeow2 = useAudio(`${playURL}`);
+  let playMeow3 = useAudio(`${playURL}`);
+  let playMeow4 = useAudio(`${playURL}`);
+  let playMeow5 = useAudio(`${playURL}`);
 
   return (
     <div

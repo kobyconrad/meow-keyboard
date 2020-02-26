@@ -33,11 +33,23 @@ const App = () => {
     <div>
       <h1>Kitten Concert Keyboard</h1>
       <div className="keyboardContainer">
-        <WhiteKey />
-        <BlackKey translateX="-15px" />
-        <WhiteKey translateX="-30px" />
-        <BlackKey translateX="-45px" />
-        <WhiteKey translateX="-60px" />
+        <WhiteKey playURL={"http://localhost:3000/meowc0.mp3"} />
+        <BlackKey
+          translateX="-15px"
+          playURL={"http://localhost:3000/meowcsharp0.mp3"}
+        />
+        <WhiteKey
+          translateX="-30px"
+          playURL={"http://localhost:3000/meowd0.mp3"}
+        />
+        <BlackKey
+          translateX="-45px"
+          playURL={"http://localhost:3000/meowdsharp0.mp3"}
+        />
+        <WhiteKey
+          translateX="-60px"
+          playURL={"http://localhost:3000/meowe0.mp3"}
+        />
       </div>
 
       <button
