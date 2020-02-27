@@ -4,6 +4,7 @@ import Sound from "react-sound";
 import WhiteKey from "../components/whiteKey";
 import BlackKey from "../components/blackKey";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
+import NavBar from "../components/navBar";
 
 const App = () => {
   const [sharedState, setSharedState] = useSharedState("my-room");
@@ -31,7 +32,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Kitten Concert Keyboard</h1>
+      <NavBar />
       <div className="keyboardContainer">
         <WhiteKey playURL={"http://localhost:3000/meowc0.mp3"} />
         <BlackKey
@@ -72,6 +73,17 @@ const App = () => {
           flex-direction: row;
         }
       `}</style>
+      {/* <style jsx global>{`
+        html,
+        body {
+          // margin: 0;
+          // padding: 0;
+          // display: flex;
+          // flex-direction: row;
+          // height: 100%;
+          // font-family: Arial;
+        }
+      `}</style> */}
     </div>
   );
 };
