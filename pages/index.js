@@ -5,31 +5,9 @@ import WhiteKey from "../components/whiteKey";
 import BlackKey from "../components/blackKey";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 import NavBar from "../components/navBar";
+import Footer from "../components/footer";
 
 const App = () => {
-  const [sharedState, setSharedState] = useSharedState("my-room");
-
-  function useAudio(url) {
-    const [aud, setAud] = useState();
-
-    useEffect(() => {
-      setAud(new Audio(url));
-    }, [url]);
-
-    function play() {
-      if (aud) {
-        aud.play();
-      }
-    }
-
-    return play;
-  }
-
-  let playMeow = useAudio("http://localhost:3000/meow.mp3");
-  let playMeow2 = useAudio("http://localhost:3000/meow.mp3");
-
-  let playCount = 1;
-
   return (
     <div>
       <NavBar />
@@ -52,38 +30,29 @@ const App = () => {
           playURL={"http://localhost:3000/meowe0.mp3"}
         />
       </div>
-
-      <button
-        onClick={function() {
-          if (playCount === 1) {
-            playMeow();
-            playCount++;
-          } else if (playCount === 2) {
-            playMeow2();
-            playCount++;
+      <Footer />
+      <style jsx>
+        {`
+          .keyboardContainer {
+            display: flex;
+            flex-direction: row;
+            background-color: #111;
+            min-height: 450px;
+            padding-top: 75px;
+            padding-left: 20px;
           }
-          console.log(playCount);
-        }}
-      >
-        Play Audio
-      </button>
-      <style jsx>{`
-        .keyboardContainer {
-          display: flex;
-          flex-direction: row;
-        }
-      `}</style>
-      {/* <style jsx global>{`
+        `}
+      </style>
+      <style jsx global>{`
         html,
         body {
-          // margin: 0;
-          // padding: 0;
-          // display: flex;
-          // flex-direction: row;
-          // height: 100%;
-          // font-family: Arial;
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background-color: #0d0d0d;
+          font-family: Arial;
         }
-      `}</style> */}
+      `}</style>
     </div>
   );
 };
