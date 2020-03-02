@@ -6,29 +6,22 @@ import BlackKey from "../components/blackKey";
 import { loadGetInitialProps } from "next/dist/next-server/lib/utils";
 import NavBar from "../components/navBar";
 import Footer from "../components/footer";
+import { isInProduction } from "../components/isInDev";
+
+const url = isInProduction()
+  ? "http://localhost:3000"
+  : "https://meow-keyboard.now.sh";
 
 const App = () => {
   return (
     <div>
       <NavBar />
       <div className="keyboardContainer">
-        <WhiteKey playURL={"http://localhost:3000/meowc0.mp3"} />
-        <BlackKey
-          translateX="-15px"
-          playURL={"http://localhost:3000/meowcsharp0.mp3"}
-        />
-        <WhiteKey
-          translateX="-30px"
-          playURL={"http://localhost:3000/meowd0.mp3"}
-        />
-        <BlackKey
-          translateX="-45px"
-          playURL={"http://localhost:3000/meowdsharp0.mp3"}
-        />
-        <WhiteKey
-          translateX="-60px"
-          playURL={"http://localhost:3000/meowe0.mp3"}
-        />
+        <WhiteKey playURL={url + "/meowc0.mp3"} />
+        <BlackKey translateX="-15px" playURL={url + "/meowcsharp0.mp3"} />
+        <WhiteKey translateX="-30px" playURL={url + "/meowd0.mp3"} />
+        <BlackKey translateX="-45px" playURL={url + "/meowdsharp0.mp3"} />
+        <WhiteKey translateX="-60px" playURL={url + "/meowe0.mp3"} />
       </div>
       <Footer />
       <style jsx>
@@ -58,7 +51,7 @@ const App = () => {
 };
 
 export default () => (
-  <RoomServiceProvider authUrl={"http://localhost:3000/api/roomservice"}>
+  <RoomServiceProvider authUrl={url + "/api/roomservice"}>
     <App />
   </RoomServiceProvider>
 );
