@@ -1,4 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useSharedState, RoomServiceProvider } from "@roomservice/react";
+
+function useAudio(url) {
+  const [aud, setAud] = useState();
+  const [sharedState, setSharedState] = useSharedState("my-room-2", {
+    audioUrl: url
+  });
+
+  useEffect(() => {
+    setAud(new Audio(sharedState.audioUrl));
+  }, [sharedState.audioUrl]);
+
+  function play() {
+    setSharedState(prevDoc => {
+      prevDoc.audioUrl = url;
+    });
+
+    if (aud) {
+      aud.play();
+    }
+  }
+
+  return play;
+}
 
 function WhiteKey(props) {
   const [state, setState] = useState("0");
@@ -19,22 +43,6 @@ function WhiteKey(props) {
 
   function resetPlayCount() {
     setPlayCount(1);
-  }
-
-  function useAudio(url) {
-    const [aud, setAud] = useState();
-
-    useEffect(() => {
-      setAud(new Audio(url));
-    }, [url]);
-
-    function play() {
-      if (aud) {
-        aud.play();
-      }
-    }
-
-    return play;
   }
 
   let playURL = props.playURL;
